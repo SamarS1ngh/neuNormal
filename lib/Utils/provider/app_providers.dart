@@ -31,6 +31,7 @@ final timerProvider =
 final getUserProvider = StateNotifierProvider<GetUserVM, User>(
   (ref) => GetUserVM(),
 );
+
 final thoughtProvider =
     StateNotifierProvider.family<ThoughtsVM, List<Thoughts>, User>((ref, user) {
   return ThoughtsVM(user);

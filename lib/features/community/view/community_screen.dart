@@ -23,12 +23,23 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   final TextEditingController _content = TextEditingController();
   bool joined = false;
 
-  // TODO:find a way cuz new instance of providers is created everytime widget rebuilds, hence new list is added instead of the old one
+  addThought(final thoughtsVM) {
+    if (_content.text != '') {
+      Thoughts thought = Thoughts(thought: _content.text, user: widget.user);
+      thoughtsVM.newThought(thought, widget.community);
+
+      ref.read(feedProvider.notifier).updateCommunityThoughts(
+          widget.community.communityName, thoughtsVM.state);
+
+      _content.text = '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final thoughtsVM = ref.watch(thoughtProvider(widget.user).notifier);
     final reff = ref.watch(feedProvider);
+
     return Scaffold(
         appBar: AppBar(
           actions: [
@@ -102,15 +113,21 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                         },
                         context: context),
                   ),
+                  VerticalGap.small(),
                   AppText.defaultText(
                     'Description:',
                     context: context,
                     size: 16,
                   ),
-                  AppText.defaultText(
-                    widget.community.description,
-                    context: context,
-                    size: 18,
+                  VerticalGap.small(),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: AppText.defaultText(
+                      textAlign: TextAlign.start,
+                      widget.community.description,
+                      context: context,
+                      size: 18,
+                    ),
                   ),
                   VerticalGap.big(),
                   Container(
@@ -120,9 +137,12 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          /// Thoughts Section
                           ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
+
+                            ///Number of thoughts associated with a specific Community
                             itemCount: reff
                                 .firstWhere(
                                   (element) {
@@ -144,6 +164,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      ///username of user who added thought
                                       AppText.subtitleDefaultBold(
                                           reff
                                               .firstWhere((element) =>
@@ -154,6 +175,8 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                                               .user
                                               .name,
                                           context: context),
+
+                                      ///thought
                                       AppText.subtitleDefault(
                                           reff
                                               .firstWhere((element) =>
@@ -162,7 +185,8 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                                                       .community.communityName)
                                               .thoughts[index]
                                               .thought,
-                                          color: Colors.red,
+                                          color:
+                                              AppColorsTheme.light().highlight,
                                           context: context),
                                     ],
                                   ),
@@ -173,21 +197,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                           VerticalGap.medium(),
                           CustomInputField(
                               suffixFunction: () {
-                                if (_content.text != '') {
-                                  Thoughts thought = Thoughts(
-                                      thought: _content.text,
-                                      user: widget.user);
-                                  thoughtsVM.newThought(
-                                      thought, widget.community);
-
-                                  ref
-                                      .read(feedProvider.notifier)
-                                      .updateCommunityThoughts(
-                                          widget.community.communityName,
-                                          thoughtsVM.state);
-
-                                  _content.text = '';
-                                }
+                                addThought(thoughtsVM);
                               },
                               suffix: Icon(
                                 Icons.send,

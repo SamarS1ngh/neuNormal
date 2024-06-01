@@ -31,6 +31,7 @@ class _CreateCommunityState extends ConsumerState<CreateCommunity> {
   final TextEditingController _description = TextEditingController();
   final TextEditingController _name = TextEditingController();
 
+  ///function to ensure that none of the textfields are empty
   bool validator() {
     if (_name.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -122,7 +123,7 @@ class _CreateCommunityState extends ConsumerState<CreateCommunity> {
                               communityName: _name.text,
                               description: _description.text,
                               type: _type,
-                              thoughts: [] as List<Thoughts>,
+                              thoughts: [],
                               user: user);
 
                           ref

@@ -1,8 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -50,7 +48,7 @@ class InterestScreen extends ConsumerWidget {
       '3D Art',
       'Socializing'
     ];
-    Map<String, dynamic> userInfo = {};
+
     final AppColorsTheme _appColorsTheme = AppColorsTheme.light();
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
