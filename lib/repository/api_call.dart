@@ -1,5 +1,5 @@
-import 'package:fluttemp/data/remote/network/api_endpoints.dart';
-import 'package:fluttemp/data/remote/network/network_api_service.dart';
+import 'package:neu_normal/data/remote/network/api_endpoints.dart';
+import 'package:neu_normal/data/remote/network/network_api_service.dart';
 
 class ApiRepo {
   final _apiService = NetworkApiService();

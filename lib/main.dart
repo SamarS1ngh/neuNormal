@@ -1,5 +1,5 @@
-import 'package:fluttemp/Utils/Routes/app_router_config.dart';
-import 'package:fluttemp/Utils/constants/app_constants.dart';
+import 'package:neu_normal/Utils/Routes/app_router_config.dart';
+import 'package:neu_normal/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,16 +18,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppColorsTheme appColorsTheme = AppColorsTheme.light();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       theme: Theme.of(context).copyWith(
           appBarTheme: AppBarTheme(
-              actionsIconTheme: const IconThemeData(color: Colors.white),
+              actionsIconTheme:
+                  IconThemeData(color: appColorsTheme.textDefault),
               iconTheme: const IconThemeData(color: Colors.white),
-              backgroundColor: AppColorsTheme.dark().bgColor),
+              backgroundColor: appColorsTheme.highlight),
+          iconTheme: IconThemeData(color: appColorsTheme.highlight),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ButtonStyle(
+                  iconColor: WidgetStatePropertyAll(appColorsTheme.textDefault),
+                  backgroundColor:
+                      WidgetStatePropertyAll(appColorsTheme.highlight))),
           extensions: [
-            AppColorsTheme.dark(),
+            AppColorsTheme.light(),
             AppTypography.main(),
             AppDimensionsTheme.main(View.of(context))
           ]),

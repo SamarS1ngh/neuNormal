@@ -2,4 +2,7 @@
 
 class LocalStorageKeys {
   static const userName = "userName";
+  static const password = "password";
+  static const userInterests = "userInterests";
+  static const userInfo = "userInfo";
 }

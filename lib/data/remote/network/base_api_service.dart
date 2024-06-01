@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fluttemp/data/remote/network/network_module.dart';
+import 'package:neu_normal/data/remote/network/network_module.dart';
 
 abstract class BaseApiService {
   final Dio dio = NetworkModule().dio;

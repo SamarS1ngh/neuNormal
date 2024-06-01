@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import 'package:fluttemp/data/remote/network/api_network_constants.dart';
+import 'package:neu_normal/data/remote/network/api_network_constants.dart';
 
 // A class responsible for configuring and providing the Dio instance for network operations.
 class NetworkModule {

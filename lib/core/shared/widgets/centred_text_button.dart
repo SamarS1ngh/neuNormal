@@ -1,6 +1,4 @@
-import 'package:fluttemp/Utils/constants/app_colors.dart';
-import 'package:fluttemp/Utils/constants/app_constants.dart';
-import 'package:fluttemp/Utils/constants/app_dimensions.dart';
+import 'package:neu_normal/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class CenteredTextButton extends StatelessWidget {
@@ -32,7 +30,7 @@ class CenteredTextButton extends StatelessWidget {
       key: key,
       label: label,
       onTap: onTap,
-      color: AppColorsTheme.dark().bgInput,
+      color: AppColorsTheme.light().highlight,
       height: height ?? 50,
       width: width ?? 300,
       radius: radius ?? 7,
