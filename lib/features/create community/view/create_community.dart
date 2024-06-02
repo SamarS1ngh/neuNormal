@@ -9,7 +9,6 @@ import 'package:neu_normal/core/shared/widgets/centred_text_button.dart';
 import 'package:neu_normal/core/shared/widgets/custom_input_field.dart';
 import 'package:neu_normal/core/shared/widgets/vertical_gap.dart';
 import 'package:neu_normal/data/local/local_storage.dart';
-import 'package:neu_normal/features/community/model/thoughts.dart';
 import 'package:neu_normal/features/create%20community/model/community.dart';
 
 class CreateCommunity extends ConsumerStatefulWidget {
@@ -119,6 +118,7 @@ class _CreateCommunityState extends ConsumerState<CreateCommunity> {
                           User user = User.fromMap(jsonDecode(userInfo));
 
                           Community newCommunity = Community(
+                              events: [],
                               dateTime: DateTime.now(),
                               communityName: _name.text,
                               description: _description.text,

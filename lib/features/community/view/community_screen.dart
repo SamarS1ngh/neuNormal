@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:neu_normal/Utils/provider/app_providers.dart';
 import 'package:neu_normal/core/constants/app_colors.dart';
 import 'package:neu_normal/core/shared/widgets/app_text.dart';
@@ -7,6 +8,7 @@ import 'package:neu_normal/core/shared/widgets/centred_text_button.dart';
 import 'package:neu_normal/core/shared/widgets/custom_input_field.dart';
 import 'package:neu_normal/core/shared/widgets/vertical_gap.dart';
 import 'package:neu_normal/features/community/model/thoughts.dart';
+import 'package:neu_normal/features/event/view/eventName_alertDialog.dart';
 import '../../../core/shared/model/user.dart';
 import '../../create community/model/community.dart';
 
@@ -21,6 +23,7 @@ class CommunityScreen extends ConsumerStatefulWidget {
 
 class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   final TextEditingController _content = TextEditingController();
+
   bool joined = false;
 
   addThought(final thoughtsVM) {
@@ -44,9 +47,15 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
         appBar: AppBar(
           actions: [
             Visibility(
-                visible: !joined,
+                visible: joined,
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.go('/feed/create_event', extra: {
+                        "community": widget.community,
+                        "user": widget.user
+                      });
+                      // createEvent(_createEventCtrlr);
+                    },
                     icon: const Icon(
                       Icons.create,
                       color: Colors.white,
@@ -90,7 +99,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                         ),
                         VerticalGap.medium(),
                         AppText.subtitleDefault(
-                            'Event Type: ${widget.community.type}',
+                            'Type: ${widget.community.type}',
                             context: context)
                       ],
                     ),
@@ -100,15 +109,15 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                     alignment: Alignment.topRight,
                     child: CenteredTextButton.primary(
                         width: 60,
-                        label: joined ? 'Join' : 'Joined',
+                        label: !joined ? 'Join' : 'Joined',
                         onTap: () {
                           setState(() {
                             joined = !joined;
                           });
-                          !joined
+                          joined
                               ? ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                      content: Text('Joined Community ')))
+                                      content: Text('Community Joined')))
                               : null;
                         },
                         context: context),

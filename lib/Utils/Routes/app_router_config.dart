@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:neu_normal/features/community/view/community_screen.dart';
 import 'package:neu_normal/features/create%20community/model/community.dart';
 import 'package:neu_normal/features/create%20community/view/create_community.dart';
+import 'package:neu_normal/features/event/view/event_screen.dart';
 import 'package:neu_normal/features/feed/view/feed_page.dart';
 import 'package:neu_normal/features/interests/view/interests_screen.dart';
 
@@ -41,6 +42,17 @@ class AppRouter {
                     Map<String, dynamic> mp =
                         state.extra as Map<String, dynamic>;
                     return CommunityScreen(
+                      community: mp["community"],
+                      user: mp["user"],
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'create_event',
+                  builder: (context, state) {
+                    Map<String, dynamic> mp =
+                        state.extra as Map<String, dynamic>;
+                    return EventScreen(
                       community: mp["community"],
                       user: mp["user"],
                     );

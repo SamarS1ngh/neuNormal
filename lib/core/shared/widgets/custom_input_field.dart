@@ -13,9 +13,12 @@ class CustomInputField extends StatefulWidget {
       required this.textEditingController,
       this.hintText,
       this.suffixFunction,
+      this.onChanged,
       this.maxLines});
   final String? label;
   final Function()? suffixFunction;
+  final Function(String)? onChanged;
+
   Icon? prefixIcon;
   Icon? suffix;
   final String? hintText;
@@ -36,6 +39,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: widget.maxLines ?? 1,
+      onChanged: widget.onChanged,
 
       /// Obscure text if textfield should be obscure, defined by the user and default obscure is true
       obscureText: widget.is_obscure && _default_obscure,
@@ -68,6 +72,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
             ? GestureDetector(
                 onTap: widget.suffixFunction, child: widget.suffix)
             : null,
+
         labelStyle: TextStyle(color: _appColorsTheme.highlight),
         labelText: widget.label,
         hintText: widget.hintText,

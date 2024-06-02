@@ -7,6 +7,8 @@ import 'package:neu_normal/features/Auth/ViewModel/signup_VM.dart';
 import 'package:neu_normal/features/community/model/thoughts.dart';
 import 'package:neu_normal/features/community/viewmodel/thoughts_VM.dart';
 import 'package:neu_normal/features/create%20community/model/community.dart';
+import 'package:neu_normal/features/event/model/event.dart';
+import 'package:neu_normal/features/event/viewmodel/event_VM.dart';
 import 'package:neu_normal/features/feed/viewmodel/feed_VM.dart';
 import 'package:neu_normal/features/feed/viewmodel/timer.dart';
 import 'package:neu_normal/features/interests/viewmodel/interest_VM.dart';
@@ -36,3 +38,6 @@ final thoughtProvider =
     StateNotifierProvider.family<ThoughtsVM, List<Thoughts>, User>((ref, user) {
   return ThoughtsVM(user);
 });
+
+final eventProvider =
+    StateNotifierProvider<EventVM, List<Event>>((ref) => EventVM());
