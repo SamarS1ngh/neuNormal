@@ -70,7 +70,8 @@
 
 **Screenshots**
 
-![Screenshot_1717358469](https://github.com/SamarS1ngh/neuNormal/assets/112770584/119cb473-989e-4540-9e48-148b755eaa31 = 250 * 250)
+<img width=200 src = "https://github.com/SamarS1ngh/neuNormal/assets/112770584/119cb473-989e-4540-9e48-148b755eaa31">
+![Screenshot_1717358469](https://github.com/SamarS1ngh/neuNormal/assets/112770584/119cb473-989e-4540-9e48-148b755eaa31)
 ![Screenshot_1717358484](https://github.com/SamarS1ngh/neuNormal/assets/112770584/220897c9-c673-4fa1-983b-1471d1639223)
 ![Screenshot_1717358491](https://github.com/SamarS1ngh/neuNormal/assets/112770584/e37b268b-9331-44e4-b394-d8536885a92d)
 ![Screenshot_1717358501](https://github.com/SamarS1ngh/neuNormal/assets/112770584/00bddc31-b887-4d1a-9b67-1f2ee201d52c)
